@@ -7,7 +7,7 @@
 A Persian study companion for the **Spoken Language Processing** course at **Iran University of Science and Technology**, taught by **Dr. Zeynab Aghahadi (دکتر زینب آقاهادی)** in **Fall 1405**. Ten sessions connect the physics of speech with modern text-to-speech systems.
 
 <p align="center">
-  <a href="slp-booklet/build/main.pdf"><strong>Read the complete booklet ↗</strong></a>
+  <a href="slp-booklet/speech-processing-booklet-fa.pdf"><strong>Read the complete booklet ↗</strong></a>
   &nbsp; · &nbsp;
   <a href="#session-notes">Browse session notes</a>
   &nbsp; · &nbsp;
@@ -18,7 +18,7 @@ A Persian study companion for the **Spoken Language Processing** course at **Ira
 
 | Resource | What you’ll find | Access |
 | :--- | :--- | :--- |
-| **Complete booklet** | Illustrated Persian booklet covering sessions 1–10; current draft | [View PDF](slp-booklet/build/main.pdf) · [Download PDF](slp-booklet/build/main.pdf?raw=true) |
+| **Complete booklet** | Illustrated Persian booklet covering sessions 1–10; current draft | [View PDF](slp-booklet/speech-processing-booklet-fa.pdf) · [Download PDF](slp-booklet/speech-processing-booklet-fa.pdf?raw=true) |
 | **Summarized booklet** | A shorter companion for review | **Coming soon** — will be linked here when added |
 | **Session notes** | Ten individual Markdown documents | [Browse notes](notes/) |
 | **ChatGPT versions** | Shared classroom-note conversations for each session | [Session index below](#session-notes) |
@@ -52,7 +52,7 @@ cd slp-iust/slp-booklet
 make
 ```
 
-The build produces [`build/main.pdf`](slp-booklet/build/main.pdf). See the [booklet guide](slp-booklet/README.md) for individual chapter builds.
+The build produces `build/main.pdf` and updates [`speech-processing-booklet-fa.pdf`](slp-booklet/speech-processing-booklet-fa.pdf). See the [booklet guide](slp-booklet/README.md) for individual chapter builds.
 
 ## Repository map
 
@@ -63,10 +63,9 @@ The build produces [`build/main.pdf`](slp-booklet/build/main.pdf). See the [book
 ├── docs/                    README artwork
 ├── notes/                   Session notes: 01.md … 10.md
 └── slp-booklet/
-    ├── build/main.pdf       Compiled booklet PDF
     ├── assets/              Fonts and booklet figures
     ├── latex/               Main document and ten chapters
-    └── Makefile             Build commands
+    └── Makefile             Build and release commands
 ```
 
 ## Corrections & acknowledgments

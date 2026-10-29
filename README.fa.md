@@ -9,7 +9,7 @@
 مجموعه‌ای فارسی برای مطالعهٔ درس **پردازش گفتار** در **دانشگاه علم و صنعت ایران**، با تدریس **دکتر زینب آقاهادی** در **پاییز ۱۴۰۵**. ده جلسه، از مبانی تولید و تحلیل گفتار تا سامانه‌های نوین تبدیل متن به گفتار.
 
 <p align="center">
-  <a href="slp-booklet/build/main.pdf"><strong>مطالعهٔ جزوهٔ کامل ↗</strong></a>
+  <a href="slp-booklet/speech-processing-booklet-fa.pdf"><strong>مطالعهٔ جزوهٔ کامل ↗</strong></a>
   &nbsp; · &nbsp;
   <a href="#یادداشتهای-جلسات">یادداشت‌های جلسات</a>
   &nbsp; · &nbsp;
@@ -20,7 +20,7 @@
 
 | منبع | محتوا | دسترسی |
 | :--- | :--- | :--- |
-| **جزوهٔ کامل** | جزوهٔ مصور فارسی شامل جلسات ۱ تا ۱۰؛ نسخهٔ پیش‌نویس | [مشاهدهٔ PDF](slp-booklet/build/main.pdf) · [دریافت PDF](slp-booklet/build/main.pdf?raw=true) |
+| **جزوهٔ کامل** | جزوهٔ مصور فارسی شامل جلسات ۱ تا ۱۰؛ نسخهٔ پیش‌نویس | [مشاهدهٔ PDF](slp-booklet/speech-processing-booklet-fa.pdf) · [دریافت PDF](slp-booklet/speech-processing-booklet-fa.pdf?raw=true) |
 | **جزوهٔ خلاصه** | نسخه‌ای کوتاه‌تر برای مرور مطالب | **به‌زودی** — پس از اضافه‌شدن، پیوند اینجا قرار می‌گیرد |
 | **یادداشت‌های جلسات** | ده فایل مستقل مارک‌داون | [مرور یادداشت‌ها](notes/) |
 | **نسخه‌های ChatGPT** | گفتگوهای اشتراکی یادداشت‌های هر جلسه | [فهرست جلسات](#یادداشتهای-جلسات) |
@@ -58,7 +58,7 @@ make
 
 <div dir="rtl">
 
-خروجی در [`build/main.pdf`](slp-booklet/build/main.pdf) ساخته می‌شود. راهنمای ساخت یک فصل در [راهنمای جزوه](slp-booklet/README.md) آمده است.
+خروجی در `build/main.pdf` ساخته می‌شود و فایل [`speech-processing-booklet-fa.pdf`](slp-booklet/speech-processing-booklet-fa.pdf) را به‌روز می‌کند. راهنمای ساخت یک فصل در [راهنمای جزوه](slp-booklet/README.md) آمده است.
 
 ## ساختار مخزن
 
@@ -71,10 +71,9 @@ make
 ├── docs/                    README artwork
 ├── notes/                   Session notes: 01.md … 10.md
 └── slp-booklet/
-    ├── build/main.pdf       Compiled booklet PDF
     ├── assets/              Fonts and booklet figures
     ├── latex/               Main document and ten chapters
-    └── Makefile             Build commands
+    └── Makefile             Build and release commands
 ```
 
 <div dir="rtl">

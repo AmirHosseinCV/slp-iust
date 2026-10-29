@@ -2,7 +2,7 @@
 
 جزوهٔ فارسی درس پردازش گفتار، دکتر زینب آقاهادی، دانشگاه علم و صنعت ایران، پاییز ۱۴۰۵؛ پیش‌نویس جلسات ۱ تا ۱۰.
 
-[مشاهدهٔ PDF](build/main.pdf) · [راهنمای فارسی](../README.fa.md) · [English guide](../README.md)
+[مشاهدهٔ PDF](speech-processing-booklet-fa.pdf) · [راهنمای فارسی](../README.fa.md) · [English guide](../README.md)
 
 ## ساخت
 
@@ -14,7 +14,7 @@
 make
 ```
 
-خروجی در [`build/main.pdf`](build/main.pdf) ساخته می‌شود.
+خروجی در `build/main.pdf` ساخته و در `speech-processing-booklet-fa.pdf` کپی می‌شود.
 
 ساخت یک فصل به‌تنهایی:
 
