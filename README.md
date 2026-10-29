@@ -6,9 +6,17 @@
 
 A Persian study companion for the **Spoken Language Processing** course at **Iran University of Science and Technology**, taught by **Dr. Zeynab Aghahadi (دکتر زینب آقاهادی)** in **Fall 1405**. Ten sessions connect the physics of speech with modern text-to-speech systems.
 
+<p align="center" dir="ltr">
+  <a href="slp-booklet/speech-processing-booklet-fa.pdf"><img src="docs/buttons/view-full.en.svg" alt="View full PDF" width="264" height="72"></a>
+  &nbsp;
+  <a href="slp-booklet/speech-processing-booklet-fa.pdf?raw=true"><img src="docs/buttons/download-full.en.svg" alt="Download full PDF" width="264" height="72"></a>
+  <br>
+  <img src="docs/buttons/view-summary.en.svg" alt="View summary — coming soon (disabled)" width="264" height="72">
+  &nbsp;
+  <img src="docs/buttons/download-summary.en.svg" alt="Download summary — coming soon (disabled)" width="264" height="72">
+</p>
+
 <p align="center">
-  <a href="slp-booklet/speech-processing-booklet-fa.pdf"><strong>Read the complete booklet ↗</strong></a>
-  &nbsp; · &nbsp;
   <a href="#session-notes">Browse session notes</a>
   &nbsp; · &nbsp;
   <a href="slp-booklet/latex/main.tex">Explore the LaTeX source</a>

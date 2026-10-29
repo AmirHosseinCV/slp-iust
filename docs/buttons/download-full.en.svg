@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="264" height="72" viewBox="0 0 264 72" role="img" aria-labelledby="download-full-en-title">
+  <title id="download-full-en-title">Download full PDF — SAVE FOR OFFLINE READING</title>
+  <rect x="1" y="2" width="262" height="68" rx="12" fill="#142d46" stroke="#28465f"/>
+  <g transform="translate(19 23)" fill="none" stroke="#ffffff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></g>
+  <g font-family="Tahoma, Arial, sans-serif" >
+    <text x="57" y="32" fill="#ffffff" font-size="16" font-weight="700">Download full PDF</text>
+    <text x="57" y="51" fill="#b3c9df" font-size="9" letter-spacing=".9">SAVE FOR OFFLINE READING</text>
+  </g>
+</svg>

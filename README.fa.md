@@ -8,9 +8,17 @@
 
 مجموعه‌ای فارسی برای مطالعهٔ درس **پردازش گفتار** در **دانشگاه علم و صنعت ایران**، با تدریس **دکتر زینب آقاهادی** در **پاییز ۱۴۰۵**. ده جلسه، از مبانی تولید و تحلیل گفتار تا سامانه‌های نوین تبدیل متن به گفتار.
 
+<p align="center" dir="ltr">
+  <a href="slp-booklet/speech-processing-booklet-fa.pdf"><img src="docs/buttons/view-full.fa.svg" alt="مشاهدهٔ جزوهٔ کامل" width="264" height="72"></a>
+  &nbsp;
+  <a href="slp-booklet/speech-processing-booklet-fa.pdf?raw=true"><img src="docs/buttons/download-full.fa.svg" alt="دریافت جزوهٔ کامل" width="264" height="72"></a>
+  <br>
+  <img src="docs/buttons/view-summary.fa.svg" alt="مشاهدهٔ جزوهٔ خلاصه — به‌زودی؛ غیرفعال" width="264" height="72">
+  &nbsp;
+  <img src="docs/buttons/download-summary.fa.svg" alt="دریافت جزوهٔ خلاصه — به‌زودی؛ غیرفعال" width="264" height="72">
+</p>
+
 <p align="center">
-  <a href="slp-booklet/speech-processing-booklet-fa.pdf"><strong>مطالعهٔ جزوهٔ کامل ↗</strong></a>
-  &nbsp; · &nbsp;
   <a href="#یادداشتهای-جلسات">یادداشت‌های جلسات</a>
   &nbsp; · &nbsp;
   <a href="slp-booklet/latex/main.tex">منبع لاتک</a>

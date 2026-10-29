@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="264" height="72" viewBox="0 0 264 72" role="img" aria-labelledby="view-full-fa-title">
+  <title id="view-full-fa-title">مشاهدهٔ جزوهٔ کامل — PDF · جلسات ۱ تا ۱۰</title>
+  <rect x="1" y="2" width="262" height="68" rx="12" fill="#0f766e" stroke="#13877e"/>
+  <g transform="translate(218 23)" fill="none" stroke="#ffffff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></g>
+  <g font-family="Tahoma, Arial, sans-serif" text-anchor="end">
+    <text x="201" y="32" fill="#ffffff" font-size="15" font-weight="700">مشاهدهٔ جزوهٔ کامل</text>
+    <text x="201" y="51" fill="#b8eee4" font-size="11" >PDF · جلسات ۱ تا ۱۰</text>
+  </g>
+</svg>
