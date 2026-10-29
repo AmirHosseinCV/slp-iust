@@ -11,8 +11,11 @@ Thumbs.db
 .env.*
 !.env.example
 
-# LaTeX intermediates (keep release PDFs)
+# LaTeX intermediates (keep the main booklet PDF)
 **/build/
+!/slp-booklet/build/
+/slp-booklet/build/*
+!/slp-booklet/build/main.pdf
 *.aux
 *.fdb_latexmk
 *.fls
