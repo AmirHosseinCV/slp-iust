@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="264" height="72" viewBox="0 0 264 72" role="img" aria-labelledby="download-summary-en-title">
-  <title id="download-summary-en-title">Download summary — COMING SOON</title>
-  <rect x="1" y="2" width="262" height="68" rx="12" fill="#e9edf2" stroke="#d5dde6"/>
-  <g transform="translate(19 23)" fill="none" stroke="#66758a" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15" r="1"/></g>
+  <title id="download-summary-en-title">Download summary — SAVE FOR OFFLINE READING</title>
+  <rect x="1" y="2" width="262" height="68" rx="12" fill="#142d46" stroke="#28465f"/>
+  <g transform="translate(19 23)" fill="none" stroke="#ffffff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></g>
   <g font-family="Tahoma, Arial, sans-serif" >
-    <text x="57" y="32" fill="#66758a" font-size="16" font-weight="700">Download summary</text>
-    <text x="57" y="51" fill="#7b8798" font-size="9" letter-spacing=".9">COMING SOON</text>
+    <text x="57" y="32" fill="#ffffff" font-size="16" font-weight="700">Download summary</text>
+    <text x="57" y="51" fill="#b3c9df" font-size="9" letter-spacing=".9">SAVE FOR OFFLINE READING</text>
   </g>
 </svg>

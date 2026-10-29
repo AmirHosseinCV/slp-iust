@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="264" height="72" viewBox="0 0 264 72" role="img" aria-labelledby="view-summary-fa-title">
-  <title id="view-summary-fa-title">مشاهدهٔ جزوهٔ خلاصه — به‌زودی</title>
-  <rect x="1" y="2" width="262" height="68" rx="12" fill="#e9edf2" stroke="#d5dde6"/>
-  <g transform="translate(218 23)" fill="none" stroke="#66758a" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15" r="1"/></g>
+  <title id="view-summary-fa-title">مشاهدهٔ جزوهٔ خلاصه — نسخهٔ فشرده · PDF</title>
+  <rect x="1" y="2" width="262" height="68" rx="12" fill="#0f766e" stroke="#13877e"/>
+  <g transform="translate(218 23)" fill="none" stroke="#ffffff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></g>
   <g font-family="Tahoma, Arial, sans-serif" text-anchor="end">
-    <text x="201" y="32" fill="#66758a" font-size="15" font-weight="700">مشاهدهٔ جزوهٔ خلاصه</text>
-    <text x="201" y="51" fill="#7b8798" font-size="11" >به‌زودی</text>
+    <text x="201" y="32" fill="#ffffff" font-size="15" font-weight="700">مشاهدهٔ جزوهٔ خلاصه</text>
+    <text x="201" y="51" fill="#b8eee4" font-size="11" >نسخهٔ فشرده · PDF</text>
   </g>
 </svg>

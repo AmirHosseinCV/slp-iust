@@ -1,0 +1,384 @@
+\chapter{آشنایی با درس و وظایف پایین‌دستی (\eng{Downstream Tasks})}
+
+\section{معرفی درس}
+
+\subsection{درس پردازش گفتار در برابر \eng{DSP}}
+درس «پردازش گفتار» با «پردازش سیگنال دیجیتال» (\eng{DSP}) تفاوت اساسی دارد: \eng{DSP} حوزه‌ای بنیادی و ریاضیاتی است (رادار، مخابرات، تبدیل فوریه، ...)، اما پردازش گفتار شاخه‌ای کاربردی و مبتنی بر هوش مصنوعی است که روی \emph{گفتار انسان} (تحلیل، درک و تولید آن) تمرکز دارد. این درس تکرار \eng{DSP} نیست و بخش مهمی از آن به مدل‌ها و معماری‌ها اختصاص دارد، نه به ریاضیات پردازش سیگنال.
+
+\subsection{مرجع، روش تدریس و پیش‌نیازها}
+\begin{itemize}
+  \item مرجع اصلی: درس \eng{CS224S} (\eng{Spoken Language Processing}) استنفورد، نسخهٔ ۲۰۲۵. جلسهٔ اول برای ساختن ادبیات مشترک تا حدی خارج از ترتیب سیلابس است.
+  \item تدریس روی تختهٔ دیجیتال \eng{Excalidraw} انجام می‌شود؛ تصاویر تخته به اشتراک گذاشته می‌شود و کلاس‌ها ضبط می‌شوند.
+  \item آشنایی با یادگیری عمیق، \eng{Transformer} و \eng{Embedding} مفید است ولی الزامی نیست؛ هر جا لازم باشد مفهوم توضیح داده می‌شود. بخش‌های ابتدایی (به‌ویژه آواشناسی) با درس‌های رایج یادگیری عمیق تفاوت دارند.
+  \item ارزیابی مستمر است (میان‌ترم، پایان‌ترم، تمرین و پروژه)؛ جزئیات و وزن‌ها اعلام نشد و در جلسهٔ اول تمرینی با مهلت تحویل داده نشد.
+\end{itemize}
+
+\begin{exambox}{مبنای سؤالات امتحانی}
+مبنای اصلی سؤالات امتحانی، مباحثی است که \textbf{روی تختهٔ کلاس} مطرح می‌شود. اسلایدهای استنفورد فقط مرجع تکمیلی‌اند.
+\end{exambox}
+
+\begin{exambox}{کانال‌های درس}
+استاد: دکتر زینب آقاهادی؛ دستیار آموزشی: آقای روح‌الله ایزدی. اطلاعیه‌ها و تصاویر تخته در گروه «بله» (\eng{@slp\_iust\_aghahadi}) قرار می‌گیرد و همهٔ دانشجویان باید عضو شوند.
+\end{exambox}
+
+\subsection{جایگاه پردازش گفتار در هوش مصنوعی}
+پس از دوره‌ای که توجه بیشتر روی بینایی ماشین و سپس متن بود، اکنون بسیاری از کاربردهای متنی به بلوغ رسیده‌اند و تعامل طبیعی با سامانه‌ها از راه صوت اهمیت یافته است؛ پس پردازش گفتار ظرفیت بالایی برای محصولات جدید دارد. سه نکتهٔ کلاس:
+\begin{itemize}
+  \item \term{هوش مصنوعی لبه}{Edge AI}: اجرای مدل روی دستگاه محلی، بدون پردازش ابری برای هر درخواست. ملاحظات مهم: \term{تأخیر}{Latency} کم، \term{دقت}{Accuracy} کافی، منابع محدود و در نتیجه مدل کوچک و سبک، و تفاوت توزیع داده‌های واقعی با داده‌های آموزشی.
+  \item \term{زبان‌های کم‌منبع}{Low-resource Languages} (از جمله فارسی در بعضی مجموعه‌داده‌ها) با کمبود داده و لهجه روبه‌رو هستند.
+  \item پردازش گفتار «حل‌شده» نیست: مدلی که در مکالمهٔ عمومی عالی است، ممکن است در یک سازمان با واژگان تخصصی یا محدودیت سخت‌افزاری کافی نباشد. مهندس هوش مصنوعی باید مسئله را تعریف، داده جمع‌آوری و دستورالعمل برچسب‌گذاری (\eng{Annotation}) بنویسد، مدل را سازگار و خطاها را تحلیل کند.
+\end{itemize}
+
+\begin{assignmentbox}{مثال چالشی کلاس}
+دستیار صوتی در محیطی است که هم کاربر صحبت می‌کند و هم رادیو روشن است؛ سیستم باید تشخیص دهد کدام گفتار خطاب به دستیار بوده است. تبدیل صوت به متن به‌تنهایی کافی نیست (ایده‌های مرتبط: تشخیص کلمهٔ فعال‌ساز و بازشناسی گوینده، در ادامهٔ فصل).
+\end{assignmentbox}
+
+\section{مفهوم وظیفهٔ پایین‌دستی}
+\subsection{سه خانوادهٔ وظایف}
+وظایف پایین‌دستی (\eng{Downstream Tasks}) در سه خانواده بررسی شدند: \term{وظایف زبانی}{Language Tasks} (متن)، \term{وظایف گفتاری}{Speech/Voice Tasks} (صوت) و \term{وظایف بینایی}{Vision Tasks} (تصویر و ویدئو). هنگام طراحی محصول ابتدا نیازمندی‌ها بررسی و سپس وظایف و مدل‌های لازم مشخص می‌شوند؛ مثلاً در دستیار صوتی: تشخیص گفتار، تشخیص قصد، استخراج اطلاعات و تولید پاسخ صوتی، که هر کدام یک وظیفهٔ مستقل است.
+
+\begin{definitionbox}{وظیفهٔ پایین‌دستی}
+یک مسئلهٔ مشخص و کاربردی با ورودی و خروجی تعریف‌شده (مثل ترجمه، تشخیص گفتار یا تشخیص قصد) که یک مدل یا ماژول حل می‌کند و می‌تواند جزئی از یک محصول بزرگ‌تر باشد. استاد تأکید کرد دانشجو باید با شنیدن نام یک وظیفه بتواند \textbf{ورودی، خروجی و نوع مسئلهٔ} آن را بگوید.
+\end{definitionbox}
+
+\subsection{دو رویکرد طراحی: سرتاسری و خط لوله}
+\begin{itemize}
+  \item \term{سرتاسری}{End-to-End}: یک مدل یکپارچه ورودی را مستقیماً به خروجی نهایی تبدیل می‌کند و اجزای آن مشترکاً بهینه می‌شوند.
+  \item \term{خط لوله}{Pipeline}: چند ماژول مستقل پشت سر هم‌اند و خروجی هر ماژول ورودی بعدی است؛ مثلاً مترجم صوتی: \eng{Speech $\rightarrow$ Speech-to-Text $\rightarrow$ Translation $\rightarrow$ Text-to-Speech}.
+\end{itemize}
+
+
+
+\begin{table}[htbp]
+\centering
+\caption{مقایسهٔ رویکرد سرتاسری و خط لوله}
+\begin{tabular}{p{2.8cm}p{5.5cm}p{5.5cm}}
+\toprule
+معیار & سرتاسری & خط لوله \\
+\midrule
+دقت & بهینه‌سازی یکپارچه برای هدف نهایی & وابسته به دقت هر مرحله \\
+انتشار خطا & آموزش مشترک می‌تواند آن را کاهش دهد & خطای مراحل اولیه به مراحل بعد منتقل می‌شود \\
+استفادهٔ مجدد & معمولاً تخصصی برای یک هدف & استفاده از ماژول‌های موجود (مثلاً \eng{OCR}) \\
+تفسیرپذیری & یافتن منشأ خطا دشوارتر است & عیب‌یابی هر مرحله ساده‌تر است \\
+هزینهٔ توسعه & معمولاً داده و آموزش اختصاصی بیشتر & استفاده از مدل‌های آماده ممکن است \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{exambox}{نکتهٔ استاد}
+هیچ‌یک از دو رویکرد در همهٔ مسائل برتری قطعی ندارد؛ انتخاب به نوع مسئله، دقت، هزینه و محدودیت‌ها بستگی دارد. آشنایی با وظایف پایین‌دستی حتی هنگام استفاده از مدل‌های سرتاسری برای طراحی و تحلیل سامانه‌ها ضروری است.
+\end{exambox}
+
+\section{وظایف پردازش زبان طبیعی}
+استاد وظایف زبانی را بر اساس \emph{شکل ورودی و خروجی} دسته‌بندی کرد (شکل~\ref{fig:ch01-nlp-board}): تبدیل توالی به توالی، طبقه‌بندی (تک‌جمله‌ای و دوجمله‌ای)، برچسب‌گذاری توالی، مدل‌سازی زبان و خوشه‌بندی. منبع پیشنهادی برای آشنایی با وظایف و مجموعه‌داده‌ها: وب‌سایت \eng{NLP Progress}.
+
+\begin{figure}[!htb]
+\centering
+\resizebox{0.75\textwidth}{!}{%
+\begin{tikzpicture}[rtl, font=\small, >=Stealth,
+  grp/.style={draw=mainblue, fill=softblue, rounded corners=3pt, minimum height=8mm, minimum width=31mm, align=center, inner sep=4pt},
+  sub/.style={draw=mainblue!60, dashed, fill=white, rounded corners=2pt, minimum height=7mm, align=center, inner sep=3pt},
+  task/.style={draw=black!60, fill=softgreen, rounded corners=2pt, minimum height=7mm, align=center, inner sep=3pt},
+  det/.style={draw=black!40, fill=softyellow, rounded corners=2pt, minimum height=6mm, align=center, inner sep=2pt, font=\footnotesize},
+  ln/.style={-, thick, mainblue!70}]
+% groups
+\node[grp] (s2s) at (0,10.6) {\lr{Seq2Seq}};
+\node[grp] (cls) at (0,7.4) {\lr{Classification}};
+\node[grp] (seql) at (0,3.4) {\lr{Sequence Labeling}\\{\footnotesize فرمت \lr{IOB}}};
+\node[grp] (lm) at (0,0.9) {\lr{Language Modeling}};
+\node[grp] (clu) at (0,-1.2) {\lr{Clustering}};
+% seq2seq
+\node[task] (sum) at (6.2,11.1) {\lr{Summarization}};
+\node[task] (tr) at (6.2,10.1) {\lr{Translation}};
+\draw[ln] (s2s.east)--++(0.4,0)|-(sum.west);
+\draw[ln] (s2s.east)--++(0.4,0)|-(tr.west);
+% classification
+\node[sub] (one) at (3.4,8.4) {تسک تک‌جمله‌ای};
+\node[sub] (two) at (3.4,6.4) {تسک دوجمله‌ای};
+\draw[ln] (cls.east)--++(0.4,0)|-(one.west);
+\draw[ln] (cls.east)--++(0.4,0)|-(two.west);
+\node[task] (sa) at (7.8,8.4) {\lr{Sentiment Analysis}};
+\node[task] (nli) at (7.8,7.2) {\lr{Natural Language Inference}};
+\node[task] (sts) at (7.8,5.6) {\lr{Semantic Textual Similarity}};
+\draw[ln] (one.east)--(sa.west);
+\draw[ln] (two.east)--++(0.3,0)|-(nli.west);
+\draw[ln] (two.east)--++(0.3,0)|-(sts.west);
+\node[det, anchor=west, align=left] (nlic) at (11.0,7.2) {\lr{E: Entailment}\\\lr{C: Contradiction}\\\lr{N: Neutral}};
+\draw[->] (nli.east)--(nlic.west);
+\node[det, anchor=west] (stss) at (11.0,5.6) {نمرهٔ شباهت: \lr{1} تا \lr{5}};
+\draw[->] (sts.east)--(stss.west);
+% sequence labeling
+\node[task] (pos) at (7.8,4.4) {\lr{Part-of-Speech Tagging}};
+\node[task] (ner) at (7.8,3.4) {\lr{Named Entity Recognition}};
+\node[task] (isf) at (7.8,2.4) {\lr{Intent Detection and Slot Filling}};
+\draw[ln] (seql.east)--++(0.4,0)|-(pos.west);
+\draw[ln] (seql.east)--++(0.4,0)|-(ner.west);
+\draw[ln] (seql.east)--++(0.4,0)|-(isf.west);
+% LM
+\node[task] (lmt) at (7.8,0.9) {\lr{Language Modeling (Causal LM)}};
+\draw[ln] (lm.east)--(lmt.west);
+% clustering
+\node[det, fill=white, text width=5.2cm] (clud) at (4.6,-1.2) {خوشه‌بندی عبارات اسمی و ضمایر که هویت ارجاعی یکسانی در متن دارند};
+\node[task] (coref) at (11.6,-0.8) {\lr{Coreference Resolution}};
+\node[task] (el) at (11.6,-1.7) {\lr{Entity Linking}};
+\draw[ln] (clu.east)--(clud.west);
+\draw[ln] (clud.east)--++(0.3,0)|-(coref.west);
+\draw[ln] (clud.east)--++(0.3,0)|-(el.west);
+\end{tikzpicture}}
+\caption{دسته‌بندی وظایف زبانی بر اساس شکل ورودی و خروجی: تبدیل توالی به توالی، طبقه‌بندی (تک‌جمله‌ای و دوجمله‌ای)، برچسب‌گذاری توالی، مدل‌سازی زبان و خوشه‌بندی. برای \eng{NLI} سه کلاس و برای \eng{STS} نمره‌ای از ۱ تا ۵ در نظر گرفته می‌شود. (بازسازی‌شده از تختهٔ کلاس)}
+\label{fig:ch01-nlp-board}
+\end{figure}
+
+
+\subsection{تبدیل توالی به توالی (\eng{Seq2Seq})}
+در \term{خلاصه‌سازی}{Text Summarization} ورودی متن و خروجی نسخهٔ کوتاه‌تر آن است؛ در \term{ترجمهٔ ماشینی}{Machine Translation} ورودی متن زبان مبدأ و خروجی متن زبان مقصد است. در هر دو ورودی و خروجی توالی متنی‌اند. معماری پایه برای این وظایف \eng{Encoder-Decoder} است: \eng{Encoder} ورودی را به بازنمایی تبدیل می‌کند و \eng{Decoder} از روی آن خروجی را می‌سازد.
+
+\subsection{طبقه‌بندی (\eng{Classification})}
+خروجی یکی از کلاس‌های از پیش‌تعریف‌شده است. استاد آن را به وظایف «تک‌جمله‌ای» و «دوجمله‌ای» تقسیم کرد.
+
+\paragraph{تحلیل احساسات (\eng{Sentiment Analysis}).} تک‌جمله‌ای؛ مدل جهت‌گیری متن را تعیین می‌کند. تعداد کلاس‌ها به تعریف مسئله بستگی دارد (مثلاً مثبت/منفی/خنثی یا پنج‌کلاسه از \eng{Strong Negative} تا \eng{Strong Positive}).
+
+\subsubsection{استنتاج زبان طبیعی (\eng{NLI})}
+\eng{Natural Language Inference} وظیفه‌ای دوجمله‌ای است. استاد تأکید کرد نام وظایف در \eng{NLP} معنای قراردادی دارد و فهم معنای لغوی نام کافی نیست. به مدل یک \term{مقدمه}{Premise} و یک \term{فرضیه}{Hypothesis} داده می‌شود و باید رابطهٔ آن‌ها را در یکی از سه کلاس قرار دهد:
+
+\begin{table}[htbp]
+\centering
+\caption{سه کلاس \eng{NLI}}
+\begin{tabular}{p{3.5cm}p{9.5cm}}
+\toprule
+کلاس & مفهوم \\
+\midrule
+\eng{Entailment} (استلزام) & فرضیه از مقدمه قابل نتیجه‌گیری است. \\
+\eng{Contradiction} (تناقض) & فرضیه با مقدمه تناقض دارد. \\
+\eng{Neutral} (خنثی) & از مقدمه نمی‌توان درستی یا نادرستی فرضیه را نتیجه گرفت. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{مثال کلاس.} مقدمه: «سامانهٔ راداری یک پهپاد ناشناس را شناسایی کرده است؛ به واحد پدافند ابلاغ شده که تا زمان شناسایی قطعی توسط گشت، از شلیک خودداری کند.» فرضیهٔ «واحد پدافند در حال حاضر دستور عدم درگیری را اجرا می‌کند» (\eng{Entailment})؛ «دستور دارد بلافاصله هر شیء متحرک را با آتش سنگین منهدم کند» (\eng{Contradiction})؛ «پهپاد حامل محموله غیرمجاز است» (\eng{Neutral}، چون مقدمه دربارهٔ محموله چیزی نمی‌گوید).
+
+\begin{correctionbox}{برچسب فرضیهٔ اول وابسته به دستورالعمل برچسب‌گذاری است}
+از نظر منطقی سخت‌گیرانه، «دستور خودداری از شلیک داشتن» لزوماً به معنای «در حال اجرای دستور بودن» نیست و در بسیاری از دستورالعمل‌ها می‌تواند \eng{Neutral} یا استلزام ضعیف تلقی شود. برچسب بالا مطابق بیان استاد حفظ شده و نشان می‌دهد تعریف دقیق دستورالعمل چقدر مهم است.
+\end{correctionbox}
+
+\subsubsection{شباهت معنایی متون (\eng{STS})}
+\eng{Semantic Textual Similarity} نیز دوجمله‌ای است: ورودی دو متن و خروجی امتیاز شباهت \emph{معنایی} (نه واژگانی). در مثال کلاس امتیاز بین ۱ تا ۵ بود. اگر خروجی فقط مقادیر گسستهٔ ۱ تا ۵ باشد و هر عدد یک کلاس تلقی شود، مسئله \term{طبقه‌بندی}{Classification} است؛ اگر مقادیر پیوسته مانند $2.5$ یا $3.7$ را بپذیرد، \term{رگرسیون}{Regression} است. پس نوع مسئله به نحوهٔ تعریف برچسب‌های مجموعه‌داده بستگی دارد.
+
+\begin{correctionbox}{بازهٔ نمرهٔ \eng{STS}}
+بازهٔ ۱ تا ۵ مثال کلاس است؛ در \eng{STS Benchmark} نمره پیوسته در بازهٔ ۰ تا ۵ و مدل‌سازی معمولاً رگرسیون است.
+\end{correctionbox}
+
+\subsection{ارزیابی طبقه‌بندی: ماتریس درهم‌ریختگی و معیارها}
+در طبقه‌بندی دودویی هر پیش‌بینی یکی از چهار حالت است (شکل~\ref{fig:ch01-confusion}): \term{مثبت درست}{True Positive, TP}، \term{منفی درست}{True Negative, TN}، \term{مثبت کاذب}{False Positive, FP} (نمونهٔ منفی را به‌اشتباه مثبت دانسته‌ایم) و \term{منفی کاذب}{False Negative, FN} (نمونهٔ مثبت را به‌اشتباه منفی دانسته‌ایم). در مسائل چندکلاسه هر کلاس را می‌توان جداگانه در برابر بقیه سنجید.
+
+\boardfigure{0.45}{ch01-confusion-matrix.png}{ماتریس درهم‌ریختگی (ردیف‌ها: برچسب واقعی، ستون‌ها: پیش‌بینی) و فرمول‌های دقت (\eng{Precision}) و بازیابی (\eng{Recall}).\label{fig:ch01-confusion}}
+
+\begin{definitionbox}{معیارهای ارزیابی}
+\[
+\text{\lr{Precision}}=\frac{TP}{TP+FP},\qquad
+\text{\lr{Recall}}=\frac{TP}{TP+FN},\qquad
+F_1=2\cdot\frac{\text{\lr{Precision}}\cdot\text{\lr{Recall}}}{\text{\lr{Precision}}+\text{\lr{Recall}}}
+\]
+\eng{Precision}: از میان آنچه مثبت پیش‌بینی کرده‌ایم، چه کسری واقعاً مثبت است. \eng{Recall}: از میان مثبت‌های واقعی، چه کسری را پیدا کرده‌ایم. \eng{F1} میانگین هارمونیک این دو است.
+\end{definitionbox}
+
+\begin{addedbox}{مثال عددی: آشکارساز کلمهٔ فعال‌ساز}
+از ۱۰۰۰ قطعهٔ صوتی، ۶۰ قطعه واقعاً حاوی کلمهٔ فعال‌ساز است و $TP=40$، $FN=20$، $FP=10$، $TN=930$. آنگاه
+\[
+\text{\lr{Precision}}=\frac{40}{50}=0.80,\quad
+\text{\lr{Recall}}=\frac{40}{60}\approx0.667,
+\]
+\[
+F_1=\frac{2TP}{2TP+FP+FN}=\frac{80}{110}\approx0.727.
+\]
+دقت کلی (\eng{Accuracy}) برابر $0.97$ است، در حالی که یک‌سوم کلمات فعال‌ساز تشخیص داده نشده‌اند؛ پس در داده‌های نامتوازن \eng{Accuracy} به‌تنهایی گمراه‌کننده است.
+\end{addedbox}
+
+استاد دو مثال برای اهمیت نوع خطا زد: در \textbf{سامانهٔ دفاعی} مثبت کاذب (شیء بی‌خطر را تهدید دانستن) خطرناک است، پس \eng{Precision} مهم است؛ در \textbf{غربالگری بیماری} از دست دادن بیمار (منفی کاذب) پیامد جدی دارد، پس \eng{Recall} مهم است.
+
+\begin{exambox}{نتیجهٔ مهم}
+معیار ارزیابی را نباید با یک عدد عمومی انتخاب کرد؛ باید با نیازمندی و حساسیت کاربرد هماهنگ باشد. بالا بردن هم‌زمان \eng{Precision} و \eng{Recall} دشوار است و میان آن‌ها مصالحه (\eng{trade-off}) وجود دارد.
+\end{exambox}
+
+\subsection{برچسب‌گذاری توالی (\eng{Sequence Labeling})}
+ورودی توالی‌ای از توکن‌هاست و برای هر توکن یک برچسب تولید می‌شود (مثال: «هواپیما شنبه از فرودگاه مهرآباد پرواز کرد» با \eng{NER}: \eng{O, B-TIME, O, B-LOC, I-LOC, O, O} و \eng{POS}: \eng{Noun, Noun, Prep., Noun, Proper Noun, Noun, Verb}؛ مجموعهٔ برچسب‌ها و تقسیم‌بندی فعل مرکب بسته به دستورالعمل می‌تواند فرق کند).
+
+
+
+\paragraph{برچسب‌گذاری نقش واژگانی (\eng{POS Tagging}).} دستهٔ دستوری هر کلمه (\eng{Noun}، \eng{Proper Noun}، \eng{Pronoun}، \eng{Verb}، \eng{Adjective}، ...) تعیین می‌شود. استاد تأکید کرد \eng{POS} با نقش نحوی (فاعل، مفعول و ...) فرق دارد: یک اسم خاص در یک جمله فاعل و در جمله‌ای دیگر مفعول است، ولی دستهٔ واژگانی‌اش همچنان «اسم خاص» است.
+
+\paragraph{قالب \eng{IOB} و \eng{NER}.} \term{شناسایی موجودیت نام‌دار}{Named Entity Recognition - NER} موجودیت‌های مهم متن (شخص \eng{PER}، مکان \eng{LOC}، سازمان \eng{ORG}، زمان و ...) را پیدا و دسته‌بندی می‌کند؛ نوع دسته‌ها به نیاز پروژه (هستی‌شناسی یا \eng{Ontology}) بستگی دارد. مرز عبارت‌های چندکلمه‌ای با قالب \eng{IOB} مشخص می‌شود: \eng{B} (شروع عبارت)، \eng{I} (ادامهٔ عبارت) و \eng{O} (خارج از هر عبارت). برچسب‌گذاری مواردی مثل «شنبه» یا فعل مرکب «پرواز کرد» باید طبق دستورالعمل مجموعه‌داده باشد و مثال بالا تنها برچسب‌گذاری معتبر نیست. در ارزیابی \eng{NER} می‌توان از \eng{Precision}، \eng{Recall} و \eng{F1} استفاده کرد و \eng{O} حالت «منفی» است.
+
+\begin{correctionbox}{ارزیابی در سطح موجودیت}
+در ارزیابی استاندارد \eng{NER} (مثل \eng{seqeval}) یک موجودیت فقط وقتی درست است که \emph{هم نوع و هم مرز} آن کاملاً درست باشد (مثلاً «فرودگاه مهرآباد» با \eng{B-LOC} و \eng{I-LOC}). شمارش در سطح توکن، چون بیشتر توکن‌ها \eng{O} هستند، دقت را گمراه‌کننده بالا می‌برد.
+\end{correctionbox}
+
+\paragraph{دستورالعمل برچسب‌گذاری (\eng{Annotation Guideline}).} مهندس هوش مصنوعی ممکن است برای طراحی برچسب‌ها از زبان‌شناس کمک بگیرد. مراحل: تعیین هدف پروژه، تعریف مجموعهٔ برچسب‌ها (\eng{Tag Set})، تدوین دستورالعمل، آموزش برچسب‌گذاران، برچسب‌گذاری و بررسی سازگاری و کیفیت. همین دستورالعمل می‌تواند مبنای \eng{Prompt} برچسب‌گذاری با مدل‌های زبانی هم باشد؛ پس طراحی مجموعه‌داده فقط انتخاب مدل نیست و تعریف دقیق برچسب‌ها اهمیت دارد.
+
+\subsection{تشخیص قصد و پر کردن جایگاه‌ها (\eng{Intent Detection and Slot Filling})}
+این دو وظیفه در دستیارهای صوتی با هم به‌کار می‌روند.
+
+\begin{definitionbox}{قصد و جایگاه}
+\textbf{قصد} (\eng{Intent}): هدف کاربر از کل جمله؛ طبقه‌بندی در سطح جمله. \textbf{جایگاه} (\eng{Slot}): پارامترهای لازم برای اجرای آن هدف (مثلاً در قصد «خرید بلیت»: مبدأ، مقصد، ساعت)؛ معمولاً به‌صورت برچسب‌گذاری توالی با قالب \eng{IOB} مدل می‌شود.
+\end{definitionbox}
+
+\paragraph{مثال کلاس.} جملهٔ «دو تا چلوکباب از تهیه‌غذای فارسی به آدرس خودم» با قصد \eng{OrderFood}: «چلوکباب» غذا (\eng{B-FOOD})، «تهیه‌غذای فارسی» رستوران (\eng{B-REST}، \eng{I-REST}، \eng{I-REST})، «آدرس خودم» آدرس تحویل (\eng{B-ADDR}، \eng{I-ADDR}) و بقیه \eng{O}. اگر تعداد غذا هم مهم باشد، می‌توان جایگاه \eng{Quantity} را اضافه کرد؛ پس برچسب‌گذاری به طرح داده (\eng{Data Schema}) و نیازمندی‌ها وابسته است.
+
+اگر جایگاه‌های لازم ناقص باشند، سیستم می‌تواند وارد گفت‌وگو شود و آن‌ها را بپرسد.
+
+\subsection{مدل‌سازی زبان و سه الگوی معماری}
+در مدل‌سازی زبان علّی (\eng{Causal LM}) مدل از توکن‌های قبلی، توکن بعدی را پیش‌بینی می‌کند و با تکرار آن متن تولید می‌شود:
+\[
+P(x_t\mid x_1,x_2,\ldots,x_{t-1}).
+\]
+«علّی» است چون مدل فقط به توکن‌های قبلی تکیه می‌کند. سه الگوی معماری \eng{Transformer}:
+\begin{itemize}
+  \item \textbf{\eng{Encoder-only}}: درک ورودی و استخراج بازنمایی؛ مناسب طبقه‌بندی و برچسب‌گذاری.
+  \item \textbf{\eng{Decoder-only}}: تولید خودبازگشتی (\eng{autoregressive}) توکن‌ها؛ مناسب مدل‌سازی زبان و تولید متن (خانوادهٔ \eng{GPT}).
+  \item \textbf{\eng{Encoder-Decoder}}: بازنمایی ورودی و تولید خروجی جدید؛ مناسب \eng{Seq2Seq} مانند ترجمه و خلاصه‌سازی.
+\end{itemize}
+\eng{Decoder-only} به این معنا نیست که مدل ورودی را نمی‌فهمد؛ فقط \eng{Encoder} مجزا ندارد و لایه‌هایش خود ورودی (\eng{Prompt}) را پردازش می‌کنند. جزئیات \eng{Transformer} در جلسات بعد می‌آید.
+
+\begin{correctionbox}{نکتهٔ تکمیلی}
+این تقسیم‌بندی ساده‌شده است: \eng{BERT} با \eng{Masked LM} آموزش می‌بیند و مدل‌های \eng{Decoder-only} با \eng{Prompt} طبقه‌بندی هم می‌کنند؛ وظایف «مناسب» هر معماری‌اند، نه «منحصر» به آن.
+\end{correctionbox}
+
+\subsection{هم‌ارجاعی، پیوند موجودیت و خوشه‌بندی}
+در \term{تشخیص هم‌ارجاعی}{Coreference Resolution} ورودی یک سند و خروجی گروه‌هایی از عبارت‌هایی است که به یک موجودیت اشاره دارند؛ مثلاً خوشهٔ ۱: «علی، آقای احمدی، او» و خوشهٔ ۲: «کتاب، این اثر، آن». چون تعداد خوشه‌ها و اعضای آن‌ها از پیش معلوم نیست، از نظر ساختار خروجی به \term{خوشه‌بندی}{Clustering} شباهت دارد.
+
+\begin{correctionbox}{تعریف دقیق \eng{Entity Linking}}
+در کلاس گفته شد هم‌ارجاعی درون یک سند است و \eng{Entity Linking} ارتباط اشاره‌ها در اسناد مختلف. این ساده‌سازی است: \term{پیوند موجودیت}{Entity Linking} یعنی نگاشت هر \emph{اشاره} (\eng{mention}) در متن به یک موجودیت مشخص در پایگاه دانش (مثل \eng{Wikidata})؛ مثلاً «مهرآباد» به «فرودگاه بین‌المللی مهرآباد». هم‌ارجاعی میان‌اسنادی مسئلهٔ نزدیک ولی جداست.
+\end{correctionbox}
+
+\section{وظایف پردازش گفتار}
+تأکید اصلی درس بر وظایف گفتاری است.
+
+\subsection{بازشناسی خودکار گفتار (\eng{ASR})}
+\term{بازشناسی خودکار گفتار}{Automatic Speech Recognition - ASR} یا \eng{Speech-to-Text (STT)}: ورودی سیگنال صوتی و خروجی متن.
+
+\begin{itemize}
+  \item \term{غیرجریانی (دسته‌ای)}{Non-streaming / Batch}: پردازش پس از دریافت بخش کامل گفتار؛ زمینهٔ کامل و معمولاً دقت بهتر، ولی تأخیر بیشتر (پردازش فایل ضبط‌شده).
+  \item \term{جریانی}{Streaming / Real-time}: پردازش هم‌زمان با دریافت صوت؛ تأخیر کمتر ولی زمینهٔ محدودتر و طراحی پیچیده‌تر (تعامل زنده، دستیار صوتی).
+\end{itemize}
+
+\paragraph{قطعه‌بندی (\eng{Chunking}).} مدل جریانی سیگنال را به قطعات کوچک (\term{چانک}{Chunk}) تقسیم می‌کند. مثلاً هنگام دریافت «چراغ اتاق را خاموش کن» ابتدا فقط «چراغ» و بعد «چراغ اتاق را» در دسترس است و در این مراحل هنوز معلوم نیست قصد روشن کردن است یا خاموش کردن. برای ساخت داده می‌توان به چانک‌ها برچسب \eng{Intent} جملهٔ کامل داد. \term{هم‌پوشانی}{Overlap} میان چانک‌ها پیوستگی اطلاعات را حفظ می‌کند؛ طول چانک حداقل تأخیر را تعیین می‌کند و چانک کوچک‌تر یعنی تأخیر کمتر ولی زمینهٔ کمتر.
+
+\subsection{تبدیل متن به گفتار (\eng{TTS})}
+\term{تبدیل متن به گفتار}{Text-to-Speech - TTS} معکوس \eng{ASR} است: ورودی متن و خروجی سیگنال گفتار. در \term{\eng{TTS} جریانی}{Streaming TTS} صوت پیش از آماده شدن کل پاسخ پخش می‌شود، که برای مکالمهٔ بلادرنگ مهم است.
+
+\subsection{حذف نویز (\eng{Noise Suppression})}
+ورودی صوت نویزی و خروجی نسخهٔ بهبودیافته با همان طول است (گفتار ۱۰ ثانیه‌ای نویزی $\rightarrow$ سیگنال ۱۰ ثانیه‌ای با نویز کمتر). این وظیفه (\eng{Speech Enhancement}) معمولاً از مراحل اولیهٔ خط لولهٔ پردازش گفتار است.
+
+\subsection{تشخیص فعالیت گفتاری و کلمهٔ فعال‌ساز}
+\term{تشخیص فعالیت گفتاری}{Voice Activity Detection - VAD} مشخص می‌کند کدام بازه‌های سیگنال گفتار دارند؛ در ساده‌ترین شکل طبقه‌بندی دودویی (\eng{0}: گفتار نیست، \eng{1}: هست). \term{تشخیص کلمهٔ فعال‌ساز}{Wake Word Detection} شناسایی عبارتی مشخص (مثلاً «سلام») برای فعال‌سازی سیستم است. روی تخته: تا زمانی که کلمهٔ بیدارباش شنیده نشود، مدل‌های سنگین (\eng{ASR}، \eng{Intent Detection} و \eng{LLM}) روشن نمی‌شوند. کاربرد مشترک هر دو، صرفه‌جویی در منابع است؛ خط لوله:
+\[
+\text{\lr{Audio}}\rightarrow\text{\lr{Noise Suppression}}\rightarrow\text{\lr{VAD}}\rightarrow\text{\lr{Speech Processing}}.
+\]
+
+تفاوت: \eng{VAD} وجود هر گفتاری را تشخیص می‌دهد و به محتوا وابسته نیست، ولی \eng{Wake Word} فقط یک عبارت مشخص را برای فعال‌سازی دستیار تشخیص می‌دهد.
+
+\subsection{تشخیص مستقیم قصد از گفتار (\eng{Speech-to-Intent})}
+ورودی گفتار و خروجی برچسب قصد است، بدون اینکه تبدیل صوت به متن مرحلهٔ مستقلی باشد (در برابر \eng{Speech $\rightarrow$ ASR $\rightarrow$ Text $\rightarrow$ Intent Detection}). این ماژول می‌تواند در ابتدای سیستم تصمیم‌گیرندهٔ سبک باشد: فرمان «چراغ را خاموش کن» مستقیماً اجرا می‌شود و نیازی به فعال کردن مدل زبانی بزرگ نیست؛ برای \eng{Edge AI} مفید است.
+
+\subsection{بازشناسی و تفکیک گویندگان}
+\paragraph{بازشناسی گوینده (\eng{Speaker Recognition}).} شناسایی گوینده از روی ویژگی‌های صدا؛ مثال استاد: دستیاری که فقط به دستور افراد مجاز پاسخ می‌دهد، حتی اگر رادیو روشن باشد. روند: ثبت نمونهٔ صدای کاربران مجاز، دریافت صدای جدید، بررسی ویژگی‌های گوینده و ادامهٔ پردازش در صورت تطابق.
+
+\begin{correctionbox}{تأیید و شناسایی گوینده}
+بازشناسی گوینده دو حالت دارد: \term{تأیید گوینده}{Speaker Verification} (آیا این صدا مال همان کسی است که ادعا می‌کند؟ تصمیم دودویی) و \term{شناسایی گوینده}{Speaker Identification} (این صدا مال کدام‌یک از افراد ثبت‌شده است؟). مثال دستیار صوتی به تأیید نزدیک‌تر است.
+\end{correctionbox}
+
+\paragraph{تفکیک گویندگان (\eng{Speaker Diarization}).} مشخص می‌کند \emph{چه کسی در چه زمانی} صحبت کرده است. استاد آن را شبیه \eng{Coreference Resolution} دانست: بخش‌های صوتی متعلق به یک گوینده در یک گروه قرار می‌گیرند، پس نوعی \eng{Clustering} است. نمونهٔ خروجی همراه با \eng{ASR} (مثال کلاس):
+
+مثلاً برای جلسه: «گوینده ۱ (علی)، \eng{00:01}: سلام، جلسه شروع شد. $\mid$ گوینده ۲ (رضا)، \eng{00:03}: مدارک کجاست؟ $\mid$ گوینده ۱ (علی)، \eng{00:05}: فرستادم خدمتتون.»
+
+تفاوت: بازشناسی گوینده می‌پرسد «این صدا مال کیست؟» (کاربران از پیش شناخته‌شده؛ کنترل دسترسی)، و \eng{Diarization} می‌پرسد «چه کسی در چه زمانی صحبت کرده؟» (الزاماً بدون هویت قبلی؛ تحلیل جلسات).
+
+\section{وظایف بینایی و ارتباط آن‌ها با درس}
+محصولات واقعی ممکن است به تصویر هم نیاز داشته باشند: \term{مدل‌های بینایی-زبان}{Vision-Language Models - VLM} تصویر (و گاهی ویدئو) و متن را با هم پردازش می‌کنند، و \term{بازشناسی نوری نویسه}{Optical Character Recognition - OCR} متن را از تصویر (مثلاً کارت شناسایی) استخراج می‌کند تا به مدل‌های \eng{NLP} برسد؛ معمولاً استفاده از \eng{OCR} آماده بهتر از ساختن مدل جدید است.
+
+\section{ساخت محصول با ترکیب وظایف}
+در بخش پایانی استاد چند محصول مطرح کرد و از دانشجویان خواست ماژول‌های لازم را مشخص کنند تا دانش وظایف مستقل به توانایی طراحی سیستم کامل تبدیل شود.
+
+\paragraph{مترجم صوتی.} \eng{VAD + Streaming STT + Translation + Streaming TTS}؛ در ابتدا می‌توان \eng{Noise Suppression} هم گذاشت. برای مترجم هم‌زمان مکالمه حالت جریانی مهم‌تر است و برای ترجمهٔ فایل ضبط‌شده غیرجریانی کافی است.
+
+\paragraph{احراز هویت آنلاین (\eng{e-KYC}).} کاربر تصویر کارت ملی می‌دهد، تصویر یا ویدئوی چهره می‌گیرد و جمله‌ای مشخص را با صدای بلند می‌گوید. ماژول‌های تخته: \eng{OCR + NER + Face Verification + VAD + STT}.
+\begin{itemize}
+  \item \textbf{کارت}: \eng{OCR} متن کارت را می‌خواند؛ اگر جای فیلدها ثابت نباشد، \eng{NER} نوع فیلدها (نام، شماره، تاریخ تولد) را تشخیص می‌دهد و نتیجه با سامانهٔ مرجع مقایسه می‌شود.
+  \item \textbf{چهره}: \term{تأیید چهره}{Face Verification}: آیا چهرهٔ کاربر با چهرهٔ روی مدرک مطابقت دارد؟
+  \item \textbf{جملهٔ گفته‌شده}: یکی از دانشجویان \eng{Speaker Recognition} پیشنهاد کرد، اما استاد توضیح داد هدف اینجا الزاماً تشخیص هویت گوینده نیست، بلکه بررسی این است که کاربر جملهٔ خواسته‌شده را گفته است؛ پس \eng{Speech $\rightarrow$ ASR $\rightarrow$ Text Comparison}. به بررسی هماهنگی لب و گفتار (\eng{Lip Sync}) هم اشاره شد.
+\end{itemize}
+
+\paragraph{خلاصه‌ساز جلسات.} با \eng{ASR} و \eng{Summarization} معلوم نیست هر جمله را چه کسی گفته است؛ راه‌حل استاد: \eng{Diarization + STT + Summarization}، که علاوه بر محتوا، نسبت گفتار به گویندگان را هم می‌دهد.
+
+\paragraph{دستیار صوتی هوشمند.} دستیار باید هم فرمان‌های ساده (روشن و خاموش کردن وسایل) را اجرا کند و هم به پرسش‌های تحلیلی پاسخ دهد. فرستادن همهٔ درخواست‌ها به یک مدل زبانی بزرگ هزینه و مصرف منابع را بالا می‌برد. پیشنهاد استاد: با \eng{Speech-to-Intent} درخواست‌ها ابتدا تفکیک شوند. ماژول‌ها: \eng{Wake Word + Speech-to-Intent + Streaming STT + LLM + Streaming TTS}. یادداشت استاد: فرمانی مثل «خاموش کن» باید سریع به یک \eng{API} وصل شود و کار انجام شود، بدون پاسخ‌گویی اضافه.
+
+\begin{figure}[!htb]
+\centering
+\begin{tikzpicture}[rtl, font=\small, node distance=6mm,
+  box/.style={draw, rounded corners=2pt, minimum height=8mm, align=center, fill=softblue},
+  heavy/.style={draw, rounded corners=2pt, minimum height=8mm, align=center, fill=softyellow},
+  arr/.style={-{Stealth[length=2.2mm]}, thick}]
+\node[box] (a) {\lr{Audio}\\\lr{Input}};
+\node[box, right=of a] (w) {\lr{Wake Word}\\\lr{Detection}};
+\node[box, right=of w] (s) {\lr{Speech-to-}\\\lr{Intent}};
+\node[box, right=14mm of s, yshift=10mm, fill=softgreen] (cmd) {دستور ساده:\\اجرای مستقیم\\(مثلاً خاموش کردن چراغ)};
+\node[heavy, right=14mm of s, yshift=-12mm] (asr) {\lr{Streaming}\\\lr{ASR}};
+\node[heavy, right=of asr] (llm) {\lr{LLM}};
+\node[heavy, right=of llm] (tts) {\lr{Streaming}\\\lr{TTS}};
+\draw[arr] (a)--(w); \draw[arr] (w)--(s);
+\draw[arr] (s.east)--++(5mm,0) |- (cmd.west) node[pos=0.25, above, sloped, font=\scriptsize] {};
+\draw[arr] (s.east)--++(5mm,0) |- (asr.west);
+\draw[arr] (asr)--(llm); \draw[arr] (llm)--(tts);
+\node[above=1mm of cmd, font=\scriptsize] {};
+\node[below=2mm of asr, font=\scriptsize, align=center] {درخواست تحلیلی};
+\end{tikzpicture}
+\caption{دستیار صوتی با مسیر سبک برای فرمان‌های ساده (بالا) و مسیر سنگین برای پرسش‌های تحلیلی (پایین) (شکل افزوده).}
+\end{figure}
+
+فرمان ساده از مسیر سبک (\eng{Speech-to-Intent} $\rightarrow$ اجرا) و پرسش تحلیلی از مسیر سنگین (\eng{ASR} $\rightarrow$ \eng{LLM} $\rightarrow$ \eng{TTS}) می‌رود؛ این تفکیک هزینه، تأخیر و مصرف منابع را کم می‌کند.
+
+\section{جدول جمع‌بندی وظایف}
+\begin{table}[htbp]
+\centering
+\caption{وظایف پایین‌دستی معرفی‌شده در جلسه}
+\begin{tabular}{p{3.4cm}p{2.5cm}p{3.6cm}p{3.4cm}}
+\toprule
+وظیفه & ورودی & خروجی & نوع مسئله \\
+\midrule
+\eng{Summarization / Translation} & متن & متن خلاصه / ترجمه‌شده & \eng{Seq2Seq} \\
+\eng{Sentiment Analysis} & متن & کلاس احساس & \eng{Classification} \\
+\eng{NLI} & دو متن & رابطهٔ معنایی (سه کلاس) & \eng{Classification} \\
+\eng{STS} & دو متن & امتیاز شباهت & \eng{Regression} یا \eng{Classification} \\
+\eng{POS Tagging} & توالی توکن‌ها & برچسب هر توکن & \eng{Sequence Labeling} \\
+\eng{NER} & متن & موجودیت‌های نام‌دار & \eng{Sequence Labeling} \\
+\eng{Intent Detection} & متن & قصد کاربر & \eng{Classification} \\
+\eng{Slot Filling} & متن & جایگاه‌های استخراج‌شده & \eng{Sequence Labeling} \\
+\eng{Language Modeling} & توکن‌های قبلی & توکن بعدی & \eng{Next-token Prediction} \\
+\eng{Coreference} & سند & خوشه‌های هم‌ارجاع & \eng{Clustering} \\
+\eng{ASR} & گفتار & متن & \eng{Speech-to-Text} \\
+\eng{TTS} & متن & گفتار & \eng{Speech Generation} \\
+\eng{Noise Suppression} & صوت نویزی & صوت بهبودیافته & \eng{Speech Enhancement} \\
+\eng{VAD / Wake Word} & صوت & بازه‌های گفتار / عبارت فعال‌ساز & \eng{Detection} \\
+\eng{Speech-to-Intent} & گفتار & قصد کاربر & \eng{Classification} \\
+\eng{Speaker Recognition} & صوت & هویت یا تطابق گوینده & \eng{Recognition} / \eng{Verification} \\
+\eng{Speaker Diarization} & صوت چندگوینده & بازه‌ها و گروه‌های گوینده & \eng{Diarization} / \eng{Clustering} \\
+\eng{OCR} & تصویر & متن & \eng{Text Recognition} \\
+\eng{VLM} & تصویر و متن & پاسخ وابسته به وظیفه & \eng{Multimodal} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{جمع‌بندی}
+جلسهٔ اول واژگان مشترک درس را ساخت: وظایف پایین‌دستی در سه حوزهٔ زبان، گفتار و بینایی؛ دو رویکرد سرتاسری و خط لوله؛ معیارهای ارزیابی طبقه‌بندی؛ و ترکیب وظایف برای ساخت محصولاتی مانند مترجم صوتی، \eng{e-KYC}، خلاصه‌ساز جلسات و دستیار صوتی. جلسات بعد از آواشناسی و سیگنال گفتار شروع می‌کنند و به مدل‌ها می‌رسند.
+
+\begin{exambox}{نکات مهم برای مرور و امتحان}
+\begin{itemize}
+  \item سؤالات امتحانی بر اساس مطالب تخته‌اند؛ برای هر وظیفه ورودی، خروجی و نوع مسئله را بدانید (جدول بالا).
+  \item تفاوت \eng{Pipeline} و \eng{End-to-End} از نظر دقت، انتشار خطا، استفادهٔ مجدد، تفسیرپذیری و هزینه.
+  \item تعریف \eng{TP/FP/TN/FN}، فرمول \eng{Precision}، \eng{Recall}، \eng{F1} و اینکه کدام در کدام کاربرد مهم‌تر است.
+  \item سه کلاس \eng{NLI}؛ تفاوت \eng{STS} در حالت طبقه‌بندی و رگرسیون؛ \eng{POS} در برابر نقش نحوی؛ قالب \eng{IOB}.
+  \item \eng{Intent} (سطح جمله) در برابر \eng{Slot} (سطح توکن)؛ نقش \eng{Annotation Guideline}.
+  \item تفاوت جریانی و غیرجریانی، \eng{Chunking} و هم‌پوشانی؛ تفاوت \eng{VAD} و \eng{Wake Word}؛ تفاوت \eng{Speaker Recognition} و \eng{Diarization}.
+  \item طراحی ماژول‌های یک محصول (مترجم، دستیار صوتی، \eng{e-KYC}، خلاصه‌ساز جلسه) و دلیل استفاده از \eng{VAD}، \eng{Wake Word} و \eng{Speech-to-Intent} برای صرفه‌جویی منابع.
+\end{itemize}
+\end{exambox}
