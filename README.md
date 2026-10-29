@@ -9,7 +9,7 @@ A Persian study companion for the **Spoken Language Processing** course at **Ira
 <p align="center" dir="ltr">
   <a href="slp-booklet/speech-processing-booklet-fa.pdf"><img src="docs/buttons/view-full.en.svg" alt="View full PDF" width="264" height="72"></a>
   &nbsp;
-  <a href="slp-booklet/speech-processing-booklet-fa.pdf?raw=true"><img src="docs/buttons/download-full.en.svg" alt="Download full PDF" width="264" height="72"></a>
+  <a href="https://github.com/AmirHosseinCV/slp-iust/raw/refs/heads/main/slp-booklet/speech-processing-booklet-fa.pdf?download=1"><img src="docs/buttons/download-full.en.svg" alt="Download full PDF" width="264" height="72"></a>
   <br>
   <img src="docs/buttons/view-summary.en.svg" alt="View summary — coming soon (disabled)" width="264" height="72">
   &nbsp;
@@ -26,7 +26,7 @@ A Persian study companion for the **Spoken Language Processing** course at **Ira
 
 | Resource | What you’ll find | Access |
 | :--- | :--- | :--- |
-| **Complete booklet** | Illustrated Persian booklet covering sessions 1–10; current draft | [View PDF](slp-booklet/speech-processing-booklet-fa.pdf) · [Download PDF](slp-booklet/speech-processing-booklet-fa.pdf?raw=true) |
+| **Complete booklet** | Illustrated Persian booklet covering sessions 1–10; current draft | [View PDF](slp-booklet/speech-processing-booklet-fa.pdf) · [Download PDF](https://github.com/AmirHosseinCV/slp-iust/raw/refs/heads/main/slp-booklet/speech-processing-booklet-fa.pdf?download=1) |
 | **Summarized booklet** | A shorter companion for review | **Coming soon** — will be linked here when added |
 | **Session notes** | Ten individual Markdown documents | [Browse notes](notes/) |
 | **ChatGPT versions** | Shared classroom-note conversations for each session | [Session index below](#session-notes) |

@@ -11,7 +11,7 @@
 <p align="center" dir="ltr">
   <a href="slp-booklet/speech-processing-booklet-fa.pdf"><img src="docs/buttons/view-full.fa.svg" alt="مشاهدهٔ جزوهٔ کامل" width="264" height="72"></a>
   &nbsp;
-  <a href="slp-booklet/speech-processing-booklet-fa.pdf?raw=true"><img src="docs/buttons/download-full.fa.svg" alt="دریافت جزوهٔ کامل" width="264" height="72"></a>
+  <a href="https://github.com/AmirHosseinCV/slp-iust/raw/refs/heads/main/slp-booklet/speech-processing-booklet-fa.pdf?download=1"><img src="docs/buttons/download-full.fa.svg" alt="دریافت جزوهٔ کامل" width="264" height="72"></a>
   <br>
   <img src="docs/buttons/view-summary.fa.svg" alt="مشاهدهٔ جزوهٔ خلاصه — به‌زودی؛ غیرفعال" width="264" height="72">
   &nbsp;
@@ -28,7 +28,7 @@
 
 | منبع | محتوا | دسترسی |
 | :--- | :--- | :--- |
-| **جزوهٔ کامل** | جزوهٔ مصور فارسی شامل جلسات ۱ تا ۱۰؛ نسخهٔ پیش‌نویس | [مشاهدهٔ PDF](slp-booklet/speech-processing-booklet-fa.pdf) · [دریافت PDF](slp-booklet/speech-processing-booklet-fa.pdf?raw=true) |
+| **جزوهٔ کامل** | جزوهٔ مصور فارسی شامل جلسات ۱ تا ۱۰؛ نسخهٔ پیش‌نویس | [مشاهدهٔ PDF](slp-booklet/speech-processing-booklet-fa.pdf) · [دریافت PDF](https://github.com/AmirHosseinCV/slp-iust/raw/refs/heads/main/slp-booklet/speech-processing-booklet-fa.pdf?download=1) |
 | **جزوهٔ خلاصه** | نسخه‌ای کوتاه‌تر برای مرور مطالب | **به‌زودی** — پس از اضافه‌شدن، پیوند اینجا قرار می‌گیرد |
 | **یادداشت‌های جلسات** | ده فایل مستقل مارک‌داون | [مرور یادداشت‌ها](notes/) |
 | **نسخه‌های ChatGPT** | گفتگوهای اشتراکی یادداشت‌های هر جلسه | [فهرست جلسات](#یادداشتهای-جلسات) |
